@@ -19,6 +19,11 @@ public class LinearEquationRunner {
         int x2 = Integer.parseInt(three);
         int y2 = Integer.parseInt(four);
 
+        if (x1==x2){
+            System.out.println("These points are on a vertical line: x="+x1);
+            System.exit(0);
+        }
+
         LinearEquation myEquation = new LinearEquation(x1, y1, x2, y2);
         System.out.println(myEquation.lineInfo());
         System.out.println("Enter a value for x:");
