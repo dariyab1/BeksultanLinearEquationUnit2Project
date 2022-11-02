@@ -75,36 +75,85 @@ public class LinearEquation {
         HINT: Absolute value might be helpful for printing negative y-intercepts as
                subtraction!
      */
-    public String equation(){
-        int xDiff=x2-x1;
-        int yDiff=y2-y1;
-        double b=roundedToHundredth(100*(y1-slope()*x1))/100;
+    public String equation() {
+        int xDiff = x2 - x1;
+        int yDiff = y2 - y1;
+        double b = roundedToHundredth(100 * (y1 - slope() * x1)) / 100;
         if (slope()==0){
-            return "y = "+b;
+            return "y="+b;
         }
-        if (xDiff<0&&yDiff<0){
-            xDiff*=-1;
-            yDiff*=-1;
-        }
+        if (yDiff%xDiff==0){
+            if (b <= 0) {
+                if (b == 0) {
+                    if (slope() == 1) {
+                        return "y = x";
+                    }
 
-        if (xDiff<0){
-            xDiff*=-1;
-            yDiff*=-1;
-        }
+                    if (slope() == -1) {
+                        return "y = -x";
+                    }
 
+                    return "y = " + yDiff/xDiff + "x";
+                }
+                b = Math.abs(b);
+                if (slope() == 1) {
+                    return "y = x -" + b;
+                }
 
+                if (slope() == -1) {
+                    return "y = -x -" + b;
+                }
 
-
-        if (b<=0){
-            if (b==0){
-
-                return "y = " + yDiff+"/"+xDiff+"x";
+                return "y = " + yDiff/xDiff + "x - " + b;
+            }
+            if (slope() == 1) {
+                return "y = x +" + b;
             }
 
-            b=Math.abs(b);
+            if (slope() == -1) {
+                return "y = -x +" + b;
+            }
 
-            return "y = " + yDiff+"/"+xDiff+"x - "+b;
+
+            return "y = " + yDiff/xDiff+"x + "+b;
         }
+        if (xDiff < 0) {
+            return "y = " + yDiff * -1 + "/" + xDiff * -1 + "x + " + b;
+        }
+        if (b <= 0) {
+            if (b == 0) {
+                if (slope() == -1) {
+                    return "y = -x";
+                }
+                if (slope() == 1) {
+                    return "y = x";
+                }
+
+                return "y = " + yDiff + "/" + xDiff + "x";
+            }
+
+            b = Math.abs(b);
+            if (slope() == -1) {
+                return "y = -x " + b;
+            }
+            if (slope() == 0) {
+                return "y = x" + b;
+            }
+            return "y = " + yDiff + "/" + xDiff + "x - " + b;
+        }
+        if (slope() == 1) {
+            return "y = x +" + b;
+        }
+
+        if (slope() == -1) {
+            return "y = -x +" + b;
+        }
+        if (slope() == 0) {
+            return "y = " + b;
+        }
+
+
+
 
         return "y = " + yDiff+"/"+xDiff+"x + "+b;
     }
@@ -158,6 +207,7 @@ public class LinearEquation {
         return info;
 
     }
+
 
 
 }
